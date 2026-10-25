@@ -19,7 +19,10 @@ def init_db():
         if con.execute("SELECT COUNT(*) FROM notes").fetchone()[0] == 0:
             con.executemany(
                 "INSERT INTO notes (etudiant, module, note) VALUES (?, ?, ?)",
-                [("Amina", "DevSecOps", 15.5), ("Youssef", "DevSecOps", 12.0)],
+                [
+                    ("Amina", "DevSecOps", 15.5), 
+                    ("Youssef", "DevSecOps", 12.0),
+                ],
             )
 
 init_db()
@@ -35,7 +38,7 @@ def accueil():
 # Indique que le service des notes est disponible
 @app.route("/health")
 def health():
-    return jsonify(status="ok")
+    return jsonify(status="ok", version="1.0")
 # Consultation des notes : toutes les notes,
 # ou seulement celles d'un étudiant si on donne son nom
 # Exemple : /notes?etudiant=Amina
