@@ -4,6 +4,7 @@
 
 import os
 import sqlite3
+import math
 import auth
 
 from flask import Flask, jsonify, request
@@ -116,7 +117,12 @@ def modifier_note(note_id):
             erreur="La note doit être un nombre entre 0 et 20"
         ), 400
 
-    if not 0 <= note <= 20:
+    if (
+    	isinstance(note, bool)
+    	or not isinstance(note, (int, float))
+    	or not math.isfinite(note)
+    	or not 0 <= note <= 20
+    ):
         return jsonify(
             erreur="La note doit être un nombre entre 0 et 20"
         ), 400
