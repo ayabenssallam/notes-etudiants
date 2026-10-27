@@ -3,7 +3,9 @@
 .venv/
 # Fichiers temporaires
 __pycache__/
+.pytest_cache/
 # Registre des notes
 *.db
 # Réglages propres à ce poste
 .env
+jetons.json
